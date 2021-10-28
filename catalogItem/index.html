@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatalogItem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="itemImg">
+    <img src="img/camera.jpeg" alt="camera">
+</div>
+<div id="itemInfo">
+    <h1 id="nameItem">Camera 1 Set Make Security</h1>
+    <p id="priceItem">151 р. <span id="priceItemOld">183 р.</span></p>
+    <button id="buyButton" class="bold">Приобрести</button>
+    <p class="bold">
+        Скидки:
+    </p>
+        <ul id="sales">
+            <li>1-ый день - 20%</li>
+            <li>2-ой день - 20%</li>
+            <li>3-ий день - 20%</li>
+            <li>4-ый день - 20%</li>
+        </ul>
+    <p class="bold">
+        Комплектность:
+    </p>
+        <ul id="complect">
+            <li>Камера</li>
+            <li>Провод</li>
+            <li>Кабель</li>
+            <li>Батарекйи</li>
+            <li>Инструкция</li>
+        </ul>
+    <div id="moreInfo">
+        <p><span class="bold">Lorem ipsum dolor sit amet consectetur</span> adipisicing elit. Sapiente sint labore repudiandae inventore maxime obcaecati, repellendus accusamus delectus perspiciatis fuga consequuntur impedit voluptate, officiis, tempora quod ipsam temporibus nemo. Impedit.</p>
+        <p><span class="bold">Est, magni repudiandae cupiditate fugit</span> consequuntur illum exercitationem saepe necessitatibus, assumenda ab eum quas quae ea. Quidem amet optio neque itaque! Qui repellendus cum repudiandae odio autem, dolorem ex consequatur.</p>
+        <p><span class="bold">Voluptate repellat facilis necessitatibus</span> impedit vel, cupiditate voluptatum inventore doloremque explicabo cum. Voluptatem quod eius facilis dignissimos vitae adipisci, pariatur ipsa. Iusto distinctio tenetur repudiandae accusantium culpa harum blanditiis quis.</p>
+    </div>
+</div>
+<script>
+    const url = "../index.html"
+    let buyButton = document.querySelector("#buyButton")
+    buyButton.addEventListener("click", () => {
+        window.location = url
+    })
+</script>
+</body>
+</html>
