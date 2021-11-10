@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
         <div id="logo">
         <a href="../index.html">
             <div id="kolDiv">
@@ -37,6 +37,46 @@
                 <a href="index.html" title="Авторизоваться"><img src="../icons/signInIcon.svg" alt="Authorization"></a>
             </div>
         </nav>
+    </header> -->
+    
+    <header>
+        <div id="logo">
+        <a href="../index.html">
+            <div id="kolDiv">
+                <div id="kol">
+                    VIDEO.
+                </div>
+            </div>
+            <div id="camDiv">
+                <div id="cam">
+                    PERIMETER
+                </div>
+            </div>
+        </a>
+        </div>
+        <nav id="navHeader">
+            <ul>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="">КАМЕРЫ</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/SendOrder">ЗАПРОС ЗАПИСЕЙ</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/Cart">КОРЗИНА</a></li>
+            <a sec:authorize="hasAuthority('Admin')">
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/AddPost">Добавить товар</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/Order">Запросы на доступ</a></li>
+            </a>
+            
+            
+            <a id="pay" href="/login"><img src="https://cdn4.iconfinder.com/data/icons/superuser-web-kit/512/674023-signin_login_enter_entry_sign_log_in-512.png" style="width:32px;"></a>
+            
+            
+            <a sec:authorize="isAuthenticated()">
+            <div id="signIn">
+            <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+            </form>
+            </div>
+            </a>
+            </ul>
+            </nav>
     </header>
 <div id="banner">
 <div class="grayScreen">

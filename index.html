@@ -2,88 +2,86 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>CameKol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@300&display=swap" rel="stylesheet">
-    <!-- <link rel="import" href="header.html"> -->
 </head>
 <body>
-
-<div id="main">
-    <!-- <script>
-        let link = document.querySelector('link[rel=import]');
-        let content = link.import.querySelector("header")
-    
-        document.body.appendChild(content.cloneNode(true));
-    </script> -->
-<header>
-    <div id="logo">
-        <div id="kolDiv">
-            <div id="kol">
-                VIDEO.
+    <header>
+        <div id="logo">
+        <a href="../index.html">
+            <div id="kolDiv">
+                <div id="kol">
+                    VIDEO.
+                </div>
             </div>
-        </div>
-        <div id="camDiv">
-            <div id="cam">
-                PERIMETER
+            <div id="camDiv">
+                <div id="cam">
+                    PERIMETER
+                </div>
             </div>
+        </a>
         </div>
-    </div>
-    <nav id="navHeader">
-        <ul>
-            <li class="default-header-menu-item"><a href="catalog/index.html" title="Каталог камер">Камера</a></li>
-            <li class="default-header-menu-item"><a href="index.html" title="Каталог охранников">Охранники</a></li>
-            <li class="default-header-menu-item"><a href="index.html" title="Каталог собак">Собаки</a></li>
-            <li class="default-header-menu-item"><a href="index.html" title="Каталог машин">Машины</a></li>
-            <li class="default-header-menu-item"><a href="index.html" title="Каталог оборудования">Оборудование</a></li>
-        </ul>
-        <div id="pay">
-            <a href="index.html" title="Ваша корзина"><img src="icons/payIcon.svg" alt="Mooney"></a>
-        </div>
-        <div id="signIn">
-            <a href="index.html" title="Авторизоваться"><img src="icons/signInIcon.svg" alt="Authorization"></a>
-        </div>
-    </nav>
-
-</header>
-
+        <nav id="navHeader">
+            <ul>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="catalog/index.html">КАМЕРЫ</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/SendOrder">ЗАПРОС ЗАПИСЕЙ</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/Cart">КОРЗИНА</a></li>
+            <a sec:authorize="hasAuthority('Admin')">
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/AddPost">Добавить товар</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/Order">Запросы на доступ</a></li>
+            </a>
+            
+            
+            <a id="pay" href="/login"><img src="https://cdn4.iconfinder.com/data/icons/superuser-web-kit/512/674023-signin_login_enter_entry_sign_log_in-512.png" style="width:32px;"></a>
+            
+            
+            <a sec:authorize="isAuthenticated()">
+            <div id="signIn">
+            <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+            </form>
+            </div>
+            </a>
+            </ul>
+            </nav>
+    </header>
+<div id="banner">
+<div class="grayScreen">
 </div>
-
+<h1>Главная</h1>
+</div>
 <div id="words">
     <div id="slogan">
         СПОСОБСТВУЕМ ВАШЕЙ БЕЗОПАСНОСТИ
     </div>
 </div>
-
 <footer>
-    <nav id="navFooter">
+    <nav>
         <ul>
-            <li class="default-header-menu-item"><a href="catalog/index.html" title="Каталог камер">Камера</a></li>
+            <li class="default-header-menu-item"><a href="../catalogItem/index.html" title="Каталог камер">Камера</a></li>
             <li class="default-header-menu-item"><a href="index.html" title="Каталог охранников">Охранники</a></li>
             <li class="default-header-menu-item"><a href="index.html" title="Каталог собак">Собаки</a></li>
             <li class="default-header-menu-item"><a href="index.html" title="Каталог машин">Машины</a></li>
-            <li style="margin-right: 0;" class="default-header-menu-item"><a href="index.html" title="Каталог оборудования">Оборудование</a></li>
+            <li class="default-header-menu-item"><a href="index.html" title="Каталог оборудования">Оборудование</a></li>
         </ul>
     </nav>
-    <div id="bottomLeft">
-        <div id="instIcon">
-            <a href="https://www.instagram.com/kolbis_/" target="_blank"><img src="icons/instIcon.svg" alt="instAcc"></a>
-        </div>
-        <div id="vkIcon">
-            <a href="https://vk.com/kolbis" target="_blank"><img src="icons/vkIcon.svg" alt="vkAcc"></a>
-        </div>
-        <div id="logoFooter">
-            <a href="index.html"><img src="icons/logo.png" alt="usLogo"></a>
-        </div>
+    <div id="copyright">
         <div id="name">
             © 2021, VideoPerimeter.com
         </div>
     </div>
-
-    <div id="bottomRight">
-
-    </div>
 </footer>
+<script>
+    const url = "../catalogItem/index.html"
+    let btns = document.querySelectorAll(".buyButton")
+    for(let btn of btns){
+    btn.addEventListener("click", () => {
+        window.location = url
+    })
+    }
+</script>
 </body>
 </html>
