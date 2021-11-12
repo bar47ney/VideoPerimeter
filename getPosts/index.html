@@ -27,7 +27,7 @@
         <nav id="navHeader">
             <ul>
             <li class="default-header-menu-item"><a class="p-2 text-white" href="catalog/index.html">КАМЕРЫ</a></li>
-            <li class="default-header-menu-item"><a class="p-2 text-white" href="getPosts/index.html">ЗАПРОС ЗАПИСЕЙ</a></li>
+            <li class="default-header-menu-item"><a class="p-2 text-white" href="/SendOrder">ЗАПРОС ЗАПИСЕЙ</a></li>
             <li class="default-header-menu-item"><a class="p-2 text-white" href="/Cart">КОРЗИНА</a></li>
             <a sec:authorize="hasAuthority('Admin')">
             <li class="default-header-menu-item"><a class="p-2 text-white" href="/AddPost">Добавить товар</a></li>
@@ -49,23 +49,16 @@
             </ul>
             </nav>
     </header>
-<div id="mobileMenu" class="mobileMenuNone">
-    <div id="mobileMenuClose">
-        <img src="icons/close.png" alt="mobileMenuClose">
-    </div>
-</div>
-<div id="banner">
-    <div id="burger">
-        <img src="icons/menu.png" alt="Menu">
-    </div>
-<div class="grayScreen">
-</div>
-<h1>Главная</h1>
-</div>
-<div id="words">
-    <div id="slogan">
-        СПОСОБСТВУЕМ ВАШЕЙ БЕЗОПАСНОСТИ
-    </div>
+<div id="getPosts">
+    <form>
+    <input type="text" name="" placeholder="Введите Ф.И.О." autofocus pattern="[A-Za-zА-Яа-яЁё]{3,}" tabindex="1" required>
+    <input type="text" name="" placeholder="Адрес" tabindex="2" required>
+    <input type="tel"  name="" placeholder="Номер телефона" pattern="[0-9]{7,15}" tabindex="3" required>
+    <input type="date" name="" placeholder="Дата записи" pattern="" tabindex="4" required>
+    <input type="time" name="" placeholder="Время записи" pattern="" tabindex="5" required>
+    <input type="text" name="" placeholder="Дополнительная информация" pattern="[A-Za-zА-Яа-яЁё]{3,}" tabindex="6" required>
+    <button id="getPostsButton" class="buyButton bold" type="submit" disabled>Отправить</button>
+</form>
 </div>
 <footer>
     <nav>
@@ -84,42 +77,34 @@
     </div>
 </footer>
 <script>
-    const url = "../catalogItem/index.html"
-    let btns = document.querySelectorAll(".buyButton")
-    for(let btn of btns){
-    btn.addEventListener("click", () => {
-        window.location = url
-    })
+    function checkInputs(inputs){
+    let counter = 0
+    for(let input of inputs){
+        if(input.value)
+        counter++
+    }  
+    if(counter === 6){
+        return true
+    } else{
+        return false
     }
+}
 
-    //mobileMenu//
-    let burger = document.querySelector("#burger")
-    let mobileMenu = document.querySelector("#mobileMenu")
-    let nav = document.querySelector("nav")
-    let mobileMenuClose = document.querySelector("#mobileMenuClose")
 
-    burger.addEventListener("click", () =>{
-        mobileMenu.append(nav)
-        mobileMenu.classList.toggle("mobileMenuActive")
-        document.querySelector("#pay").classList.toggle("viewSign")
-        document.querySelector("#signIn").classList.toggle("viewSign")
-    })
-
-    mobileMenuClose.addEventListener("click", () => {
-        mobileMenu.classList.toggle("mobileMenuActive")
-        document.querySelector("header").append(nav)
-        document.querySelector("#pay").classList.toggle("viewSign")
-        document.querySelector("#signIn").classList.toggle("viewSign")
-    })
-
-    window.addEventListener("resize", () => {
-        if(window.innerWidth >= 750 && mobileMenu.classList.contains("mobileMenuActive")){
-            document.querySelector("header").append(nav)
-            mobileMenu.classList.toggle("mobileMenuActive")
-            document.querySelector("#pay").classList.toggle("viewSign")
-            document.querySelector("#signIn").classList.toggle("viewSign")
-        }
-    })
+    let getPostButton = document.querySelector("#getPostsButton")
+    let inputsEvent = document.querySelectorAll("#getPosts input")
+    for(let inputEvent of inputsEvent){
+        inputEvent.addEventListener("input", () => {
+            if(checkInputs(inputsEvent)){
+                getPostButton.disabled = false
+                getPostButton.classList.add("buyButtonOpacity") 
+            } else{
+                getPostButton.disabled = true
+                getPostButton.classList.remove("buyButtonOpacity") 
+            }
+        })
+    }
+    // form
 </script>
 </body>
 </html>
