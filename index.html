@@ -45,10 +45,19 @@
             </form>
             </div>
             </a>
+            
             </ul>
             </nav>
     </header>
+<div id="mobileMenu" class="mobileMenuNone">
+    <div id="mobileMenuClose">
+        <img src="icons/close.png" alt="mobileMenuClose">
+    </div>
+</div>
 <div id="banner">
+    <div id="burger">
+        <img src="icons/menu.png" alt="Menu">
+    </div>
 <div class="grayScreen">
 </div>
 <h1>Главная</h1>
@@ -82,6 +91,35 @@
         window.location = url
     })
     }
+
+    //mobileMenu//
+    let burger = document.querySelector("#burger")
+    let mobileMenu = document.querySelector("#mobileMenu")
+    let nav = document.querySelector("nav")
+    let mobileMenuClose = document.querySelector("#mobileMenuClose")
+
+    burger.addEventListener("click", () =>{
+        mobileMenu.append(nav)
+        mobileMenu.classList.toggle("mobileMenuActive")
+        document.querySelector("#pay").classList.toggle("viewSign")
+        document.querySelector("#signIn").classList.toggle("viewSign")
+    })
+
+    mobileMenuClose.addEventListener("click", () => {
+        mobileMenu.classList.toggle("mobileMenuActive")
+        document.querySelector("header").append(nav)
+        document.querySelector("#pay").classList.toggle("viewSign")
+        document.querySelector("#signIn").classList.toggle("viewSign")
+    })
+
+    window.addEventListener("resize", () => {
+        if(window.innerWidth >= 750 && mobileMenu.classList.contains("mobileMenuActive")){
+            document.querySelector("header").append(nav)
+            mobileMenu.classList.toggle("mobileMenuActive")
+            document.querySelector("#pay").classList.toggle("viewSign")
+            document.querySelector("#signIn").classList.toggle("viewSign")
+        }
+    })
 </script>
 </body>
 </html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="import" href="index.html">
+</head>
+<body>
+    <iframe id="header" src="index.html" style="width:100%; height:1000px;"></iframe>
+    <h1>Facts</h1>
+    <p id="fact"></p>
+    <button id="btn" onclick="getFact()">Get fact!</button><br>
+    <button id="btnTwo" onclick="getFacts()">Get facts!</button><br>
+    <button id="btnThree" onclick="getPhoto()">Get photo!</button>
+    <script>
+        console.log(document.querySelector("#header").contentWindow)
+
+        async function getFact(){
+            let url = "https://catfact.ninja/fact"
+            let response = await fetch(url)
+            let fact = await response.json()
+            console.log(fact.fact)
+
+            document.querySelector("#fact").innerHTML = fact.fact
+        }
+
+        async function getFacts(){
+            if(document.querySelector("ul")){
+                document.querySelector("ul").remove()
+            }
+            let url = "https://catfact.ninja/facts"
+            let response = await fetch(url)
+            let data = await response.json()
+            let facts = data.data
+            console.log(facts)
+            let ul = document.createElement("ul")
+            document.body.append(ul)
+            for(fact of facts){
+                let li = document.createElement("li")
+                li.innerHTML = fact.fact
+                ul.append(li)
+            }
+            // document.querySelector("#fact").innerHTML = fact.fact
+        }
+        
+        async function getPhoto() {
+            let url = "https://www.upwork.com/api"
+            let response = await fetch(url)
+            let data = await response.json()
+            console.log(data)
+
+            for(let dog of data.message){
+                let img = document.createElement("img")
+                img.setAttribute("style", "height: 300px;")
+                img.setAttribute("src", dog)
+                document.body.append(img)
+            }
+        }
+
+        let link = document.querySelector('link[rel="import"]')
+        
+        console.log(link)
+    </script>
+</body>
+</html>
